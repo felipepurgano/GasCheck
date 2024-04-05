@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'cabecalho' %}
+    <link href="{% static 'usuarios/css/cadastro.css' %}" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+{% endblock 'cabecalho' %}
+
+{% block 'conteudo' %}
+
+    <div class="container">
+        <br>
+        <br>
+        <div class="row">
+
+            <div class="col-md">
+
+                <div class="box-form">
+                    <form action="" method="POST"> {% csrf_token %}
+                        <h3>Abastecimentos</h3>
+                        {% if messages %}
+                            <br>
+                            {% for message in messages %}
+                                <section class="alert {{message.tags}}">
+                                    {{message}}
+                                </section>
+                            {% endfor %}
+                        {% endif %}
+                        <br>
+                        <label>Veículo</label>
+                        <input type="text" class="form-control" placeholder="Veículo" name="veiculo">
+                        <br>
+                        <label>Placa do veículo</label>
+                        <input type="text" class="form-control" placeholder="Placa" name="placa">
+                        <br>
+                        <div class="row">
+
+                            <div class="col-md">
+                                <label for="">Combustível</label>
+                                <select class="form-select" name="combustivel">
+                                </select>
+                                <br>
+                                <label for="">Posto de Abastecimento</label>
+                                <input type="text" class="form-control" placeholder="Posto" name="posto" >
+                            </div>
+                                <br>
+                            <div class="col-md">
+                                <label for="">Km Inicial</label>
+                                <input type="text" class="form-control" placeholder="KM Inicial" name="km_inicial">
+                                <br>
+                                <label for="">Km Final</label>
+                                <input type="text" class="form-control" placeholder="KM Final" name="km_final">
+                                <br>
+                            </div>
+
+                        </div>
+                        <br>
+                        <input type="submit" value="Enviar" class="btn-cadastro">
+                        <br>
+                        <br>
+                        <br>
+                    </form>
+                </div>
+<!--
+            </div>
+            <div class="col-md">
+                <form action="" method="GET">
+                    <div class="row">
+                        <div class="col-md">
+                            <label for="">Categoria</label>
+                            <select name="categoria" id="" class="form-select">
+                                <option value=""></option>
+
+                            </select>
+                        </div>
+                        <div class="col-md">
+                            <label for="">Dificuldade</label>
+                            <select name="dificuldade" id="" class="form-select">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-md">
+                            <br>
+                            <input type="submit" style="width: 100%" value="Filtrar" class="btn-cadastro">
+                        </div>
+                    </div>
+
+                </form>
+
+                <br>
+                <br>
+
+                    <div class="box-new-flashcard">
+                        <div class="flashcard ">
+
+                            <div class="flashcard-categoria">
+                                Matematica
+                            </div>
+
+                            <a href=""><i class='icone-exit bx bx-x-circle'></i></a>
+                            <br>
+                            <br>
+                            <div class="flashcard-box-item">
+                                <p class="flashcard-item">1 + 1 = 2</p>
+                            </div>
+
+                        </div>
+                        <div class="resposta-flashcard">
+                            Sim
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+
+
+            </div>
+        </div>
+    </div>
+-->
+{% endblock 'conteudo' %}
