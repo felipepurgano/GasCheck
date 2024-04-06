@@ -28,18 +28,23 @@
                             {% endfor %}
                         {% endif %}
                         <br>
-                        <label>Veículo</label>
-                        <input type="text" class="form-control" placeholder="Veículo" name="veiculo">
-                        <br>
-                        <label>Placa do veículo</label>
-                        <input type="text" class="form-control" placeholder="Placa" name="placa">
+                        <div class="row">
+                            <div class="col-md">
+                                <label>Veículo</label>
+                                <input type="text" class="form-control" placeholder="Veículo" name="veiculo">
+                            </div>
+                            <br>
+                            <div class="col-md">
+                                <label>Data do abastecimento</label>
+                                <input type="text" class="form-control" placeholder="Data do Abastecimento" name="dt_abast">
+                            </div>
+                        </div>
                         <br>
                         <div class="row">
 
                             <div class="col-md">
                                 <label for="">Combustível</label>
-                                <select class="form-select" name="combustivel">
-                                </select>
+                                <select class="form-select" name="combustivel"></select>
                                 <br>
                                 <label for="">Posto de Abastecimento</label>
                                 <input type="text" class="form-control" placeholder="Posto" name="posto" >
@@ -62,21 +67,21 @@
                         <br>
                     </form>
                 </div>
-<!--
+
             </div>
             <div class="col-md">
                 <form action="" method="GET">
                     <div class="row">
                         <div class="col-md">
-                            <label for="">Categoria</label>
-                            <select name="categoria" id="" class="form-select">
+                            <label for="">Veículo</label>
+                            <select name="veiculo" id="" class="form-select">
                                 <option value=""></option>
 
                             </select>
                         </div>
                         <div class="col-md">
-                            <label for="">Dificuldade</label>
-                            <select name="dificuldade" id="" class="form-select">
+                            <label for="">Data de abastecimento</label>
+                            <select name="dt_abast" id="" class="form-select">
                                 <option value=""></option>
                             </select>
                         </div>
@@ -91,23 +96,41 @@
                 <br>
                 <br>
 
-                    <div class="box-new-flashcard">
-                        <div class="flashcard ">
+                    <div class="box-novo-abastecimento">
+                        <div class="abastecimento">
 
-                            <div class="flashcard-categoria">
-                                Matematica
+                            <div class="flashcard-veiculo">
+                                **Nome do Carro**
                             </div>
-
-                            <a href=""><i class='icone-exit bx bx-x-circle'></i></a>
-                            <br>
+                            
                             <br>
                             <div class="flashcard-box-item">
-                                <p class="flashcard-item">1 + 1 = 2</p>
+                                <p class="flashcard-item">Kms Rodados (Final - Inicial)</p>
+                            </div>
+                            <div class="flashcard-box-item">
+                                <p class="flashcard-item">Média Km rodados por litro</p>
+                            </div>
+                            <div class="flashcard-box-item">
+                                <p class="flashcard-item">Custo por Litro</p>
+                            </div>
+                            <div class="flashcard-box-item">
+                                <p class="flashcard-item">Km por Litro</p>
+                            </div>
+                            <div class="flashcard-box-item">
+                                <p class="flashcard-item">Custo por Km</p>
                             </div>
 
                         </div>
-                        <div class="resposta-flashcard">
-                            Sim
+                        <div class="resultado-abastecimento">
+                            ✅ Parabéns seu carro está realizado a média definida pela montadora.
+                        </div>
+                        <br>
+                        <div class="resultado-abastecimento">
+                            ❌ Ops! Temos um probleminha com média de combustível do seu veículo.
+                        </div>
+                        <br>
+                        <div class="resultado-abastecimento">
+                            ⚠️ Dê uma olhada em algumas recomendações que temos para você!
                         </div>
                     </div>
                     <br>
@@ -117,5 +140,5 @@
             </div>
         </div>
     </div>
--->
+
 {% endblock 'conteudo' %}

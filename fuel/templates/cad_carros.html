@@ -1,5 +1,67 @@
-<h1>Teste da página cad carros</h1>
+{% extends "base.html" %}
+{% load static %}
 
-<div>
-    
-</div>
+{% block 'cabecalho' %}
+    <link href="{% static 'usuarios/css/cadastro.css' %}" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+{% endblock 'cabecalho' %}
+
+{% block 'conteudo' %}
+
+<div class="container">
+    <br>
+    <br>
+    <div class="row">
+
+        <div class="col-md">
+
+            <div class="box-form">
+                <form action="" method="POST"> {% csrf_token %}
+                    <h3>Cadastro de Veículo</h3>
+                    {% if messages %}
+                        <br>
+                        {% for message in messages %}
+                            <section class="alert {{message.tags}}">
+                                {{message}}
+                            </section>
+                        {% endfor %}
+                    {% endif %}
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <label>Veículo</label>
+                            <input type="text" class="form-control" placeholder="Veículo" name="veiculo">
+                        </div>
+                        <div class="col-md">
+                            <label>Placa</label>
+                            <input type="text" class="form-control" placeholder="Placa" name="placa">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <label>Ano</label>
+                            <input type="text" class="form-control" placeholder="Ano" name="ano">
+                        </div>
+                        <div class="col-md">
+                            <label>Cor</label>
+                            <input type="text" class="form-control" placeholder="Cor" name="cor">
+                        </div>
+                        <div class="col-md">
+                            <label>Tipo de Combustível</label>
+                            <select class="form-select" name="combustivel"></select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <label>Marca</label>
+                            <select class="form-select" name="marca"></select>
+                        </div>
+                        <div class="col-md">
+                            <label>Modelo</label>
+                            <input type="text" class="form-control" placeholder="Modelo" name="modelo">
+                        </div>
+                    </div>
+{% endblock 'conteudo' %}
