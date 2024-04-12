@@ -49,19 +49,29 @@
                             <input type="text" class="form-control" placeholder="Cor" name="cor">
                         </div>
                         <div class="col-md">
-                            <label>Tipo de Combustível</label>
-                            <select class="form-select" name="combustivel"></select>
+                            <label for="">Combustível de Abastecimento</label>
+                                <select class="form-select" name="tipocombustivel">
+                                    {% for tipocombustivel in tipocombustivel %}
+                                    <option value="{{tipocombustivel.id}}">{{tipocombustivel}}</option>
+                                    {% endfor %}
+                                </select>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-md">
                             <label>Marca</label>
-                            <select class="form-select" name="marca"></select>
+                            <input type="text" class="form-control" placeholder="Marca" name="marca">
                         </div>
-                        <div class="col-md">
+                       <div class="col-md">
                             <label>Modelo</label>
                             <input type="text" class="form-control" placeholder="Modelo" name="modelo">
-                        </div>
+                        </div> 
                     </div>
+                    <br>
+                    <br>
+                    <div style="text-align: center;">
+                        <input type="submit" value="Enviar" class="btn-cadastro">
+                    </div>
+                    <br>
 {% endblock 'conteudo' %}

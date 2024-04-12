@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Veiculo, Fuel
+from .models import Combustivel, Abastecimento, CadCarros, TipoCombustivel
 
-admin.site.register(Veiculo)
-admin.site.register(Fuel)
+admin.site.register(Combustivel)
+admin.site.register(Abastecimento)
+admin.site.register(CadCarros)
+admin.site.register(TipoCombustivel)

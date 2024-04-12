@@ -4,7 +4,7 @@
 {% block 'cabecalho' %}
     <link href="{% static 'usuarios/css/cadastro.css' %}" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <link href="{% static 'fuel/css/abastecimentos.css' %}" rel="stylesheet">
 {% endblock 'cabecalho' %}
 
 {% block 'conteudo' %}
@@ -31,12 +31,16 @@
                         <div class="row">
                             <div class="col-md">
                                 <label>Veículo</label>
-                                <input type="text" class="form-control" placeholder="Veículo" name="veiculo">
+                                <select name="veiculo" id="" class="form-select">
+                                    {% for veiculo in veiculo %}
+                                    <option value="{{veiculo.id}}">{{veiculo}}</option>
+                                    {% endfor %}
+                            </select>
                             </div>
                             <br>
                             <div class="col-md">
                                 <label>Data do abastecimento</label>
-                                <input type="text" class="form-control" placeholder="Data do Abastecimento" name="dt_abast">
+                                <input type="date" class="form-control" name="dt_abast">
                             </div>
                         </div>
                         <br>
@@ -44,7 +48,11 @@
 
                             <div class="col-md">
                                 <label for="">Combustível</label>
-                                <select class="form-select" name="combustivel"></select>
+                                <select class="form-select" name="combustivel">
+                                    {% for combustivel in combustivel %}
+                                    <option value="{{combustivel.id}}">{{combustivel}}</option>
+                                    {% endfor %}
+                                </select>
                                 <br>
                                 <label for="">Posto de Abastecimento</label>
                                 <input type="text" class="form-control" placeholder="Posto" name="posto" >
@@ -75,15 +83,14 @@
                         <div class="col-md">
                             <label for="">Veículo</label>
                             <select name="veiculo" id="" class="form-select">
-                                <option value=""></option>
-
+                                    {% for veiculo in veiculo %}
+                                    <option value="{{veiculo.id}}">{{veiculo}}</option>
+                                    {% endfor %}
                             </select>
                         </div>
                         <div class="col-md">
                             <label for="">Data de abastecimento</label>
-                            <select name="dt_abast" id="" class="form-select">
-                                <option value=""></option>
-                            </select>
+                            <input type="date" name="dt_abast" id="" class="form-control">
                         </div>
                         <div class="col-md">
                             <br>
@@ -102,7 +109,7 @@
                             <div class="flashcard-veiculo">
                                 **Nome do Carro**
                             </div>
-                            
+                            <a href=""><i class='icone-exit bx bx-x-circle'></i></a>
                             <br>
                             <div class="flashcard-box-item">
                                 <p class="flashcard-item">Kms Rodados (Final - Inicial)</p>
@@ -121,15 +128,15 @@
                             </div>
 
                         </div>
-                        <div class="resultado-abastecimento">
+                        <div class="resultado-abastecimento-bom">
                             ✅ Parabéns seu carro está realizado a média definida pela montadora.
                         </div>
                         <br>
-                        <div class="resultado-abastecimento">
+                        <div class="resultado-abastecimento-ruim">
                             ❌ Ops! Temos um probleminha com média de combustível do seu veículo.
                         </div>
                         <br>
-                        <div class="resultado-abastecimento">
+                        <div class="resultado-abastecimento-dicas">
                             ⚠️ Dê uma olhada em algumas recomendações que temos para você!
                         </div>
                     </div>
