@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'cabecalho' %}
+<link rel='stylesheet' href={% static "usuarios/css/cadastro.css" %}>
+{% endblock 'cabecalho' %}
+
+{% block 'conteudo' %}
+
+    <div class="bg1">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md">
+                    <div class="box-titulo" style="display: flex; align-items: center;">
+                        <div class="box-titulo-item">
+                            <img src="{% static 'usuarios/img/logo.png' %}">
+                        </div>
+                        <div class="box-titulo-item" style="margin-left: 30px;">
+                            <h2>GasCheck </h2>
+                        </div>
+                    </div>
+                    <hr class="divisor">
+                    <br>
+                    <div class="tac">
+                        <h4 style="font-size: 26px">Sua plataforma online para te ajudar <br> no gerenciamento de combustível do seu veículo/empresa.</h4>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="{% static 'dicas/img/fuel.gif' %}" alt="Imagem GIF" style="width: 300px;">
+                    </div>
+                </div>
+
+                <div class="col-md">
+                    <br>
+                    <br>
+                    <div class="box-form">
+                        <div class="box-circle">
+                            <div class="circle c1"></div>
+                            <div class="circle c2"></div>
+                            <div class="circle c3"></div>
+                        </div>
+                        <br>
+                        <h3 style="font-size: 30px;">Dicas para economizar combustível:</h3><br> 
+                        <ol style="font-size: 20px;"> 
+                            <li>Dirija de forma mais suave, evitando acelerações e frenagens bruscas.</li>
+                            <li>Verifique regularmente a pressão dos pneus para garantir que estejam adequados.</li>
+                            <li>Evite carregar peso desnecessário no veículo.</li>
+                            <li>Mantenha o motor do veículo bem ajustado e realize a manutenção regularmente.</li>
+                            <li>Utilize o ar condicionado de forma moderada, pois ele pode aumentar o consumo de combustível.</li>
+                            <li>Planeje seus trajetos para evitar congestionamentos e percursos mais longos.</li>
+                        </ol>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock 'conteudo' %}
