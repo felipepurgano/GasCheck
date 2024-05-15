@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.contrib import messages
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect
 
 def cadastro(request):
     if request.method == 'GET':
@@ -31,7 +34,7 @@ def cadastro(request):
         except:
             messages.add_message(request, constants.ERROR, 'Erro interno do servidor.')
             return redirect('/usuarios/cadastro/')
-        
+
 def logar(request):
     if request.method == 'GET':
         return render(request, 'login.html')
@@ -43,8 +46,8 @@ def logar(request):
 
         if user:
             auth.login(request, user)
-            messages.add_message(request, constants.SUCCESS, 'Logado!')
-            return redirect('/fuel/cad_carros/') #Criar a página para adicionar os valores do carro
+            messages.add_message(request, constants.SUCCESS, 'Usuário logado com sucesso!')
+            return redirect('/fuel/cad_carros/')
         else:
             messages.add_message(request, constants.ERROR, 'Usuário ou senha inválido!')
             return redirect('/usuarios/logar/')

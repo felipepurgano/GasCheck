@@ -7,6 +7,50 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'geral/css/base.css' %}">
     <title>GasCheck</title>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #58fcd5;">
+      <div class="container-fluid">
+        <!-- GasChek -->
+        <a class="navbar-brand" href="#">GasCheck</a>
+    
+        <!-- Botão de Toggler para dispositivos pequenos -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <!-- Itens da Navbar -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <!-- Opções de navegação à esquerda -->
+            <li class="nav-item">
+              <a class="nav-link" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'cad_carros' %}">Cadastro Veículo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'abastecimentos' %}">Abastecimentos</a>
+            </li>
+          </ul>
+    
+          <!-- Botão para direcionar para a tela de login ao final da navbar -->
+        {% if request.user.is_authenticated %} <!--Validação se o usuário está autenticado ou não, se estiver é exibido o botão logout, caso contrário é exibido login-->
+          <div class="navbar-nav collapse navbar-collapse justify-content-end">
+            <button class="btn btn-light" type="button"> 
+              <a href="{% url 'logout' %}" style="text-decoration: none; color: black;">Logout</a>
+            </button>
+          </div>
+        {% else %}
+          <div class="navbar-nav collapse navbar-collapse justify-content-end">
+            <button class="btn btn-light" type="button"> 
+              <a href="{% url 'login' %}" style="text-decoration: none; color: black;">Login</a>
+            </button>
+          </div>
+        {% endif %}
+        </div>
+      </div>
+    </nav>
+    
+    
     {% block 'cabecalho' %} {% endblock %}
   </head>
   <body>

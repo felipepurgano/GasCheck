@@ -40,7 +40,7 @@
                             <br>
                             <div class="col-md">
                                 <label>Data do abastecimento</label>
-                                <input type="date" class="form-control" name="dt_abast">
+                                <input type="date" class="form-control" name="data_abastecimento">
                             </div>
                         </div>
                         <br>
@@ -50,12 +50,15 @@
                                 <label for="">Combustível</label>
                                 <select class="form-select" name="combustivel">
                                     {% for combustivel in combustivel %}
-                                    <option value="{{combustivel.id}}">{{combustivel}}</option>
+                                        <option value="{{combustivel.id}}">{{combustivel}}</option>
                                     {% endfor %}
                                 </select>
                                 <br>
                                 <label for="">Posto de Abastecimento</label>
                                 <input type="text" class="form-control" placeholder="Posto" name="posto" >
+                                <br>
+                                <label for="">Litros Abastecido</label>
+                                <input type="text" class="form-control" placeholder="Litros Abastecidos" name="litros_abastecidos">
                             </div>
                                 <br>
                             <div class="col-md">
@@ -65,13 +68,15 @@
                                 <label for="">Km Final</label>
                                 <input type="text" class="form-control" placeholder="KM Final" name="km_final">
                                 <br>
+                                <div class="col-md">
+                                    <label for="">Custo Total</label>
+                                    <input type="text" class="form-control" placeholder="Custo Total" name="custo_total">
+                                    <br>
+                                </div>
                             </div>
-
                         </div>
                         <br>
                         <input type="submit" value="Enviar" class="btn-cadastro">
-                        <input type="button" value="Cadastrar Veículo" onclick="window.location.href='{% url 'cad_carros' %}'" class="btn-cadastro">
-                        <input type="button" value="Dicas" onclick="window.location.href='{% url 'dicas' %}'" class="btn-cadastro">
                         <br>
                         <br>
                         <br>
@@ -80,20 +85,28 @@
 
             </div>
             <div class="col-md">
-                <form action="" method="GET">
+                <form action="{% url 'abastecimentos' %}" method="GET">
                     <div class="row">
                         <div class="col-md">
                             <label for="">Veículo</label>
                             <select name="veiculo" id="" class="form-select">
                                     {% for veiculo in veiculo %}
-                                    <option value="{{veiculo.id}}">{{veiculo}}</option>
+                                        <option value="{{veiculo.id}}">{{veiculo}}</option>
                                     {% endfor %}
                             </select>
                         </div>
+      
                         <div class="col-md">
-                            <label for="">Data de abastecimento</label>
-                            <input type="date" name="dt_abast" id="" class="form-control">
+                            <label for="">Data de Abastecimento</label>
+                            <select class="form-select" name="data_abastecimento">
+                                {% for data_abastecimento in data_abastecimento %}
+                                <option value="{{ data_abastecimento.data_abastecimento|date:'Y-m-d' }}">
+                                    {{ data_abastecimento.data_abastecimento }}
+                                </option>
+                                {% endfor %}
+                            </select>
                         </div>
+                                                
                         <div class="col-md">
                             <br>
                             <input type="submit" style="width: 100%" value="Filtrar" class="btn-cadastro">
@@ -107,27 +120,70 @@
 
                     <div class="box-novo-abastecimento">
                         <div class="abastecimento">
-
-                            <div class="flashcard-veiculo">
-                                **Nome do Carro**
+                            <div style="text-align: center;">    
+                                <div class="flashcard-veiculo">
+                                    {% for veiculo in veiculo %}
+                                        <option value="{{veiculo.id}}">Veículo : {{veiculo}}</option>
+                                    {% endfor %}
+                                </div>
                             </div>
-                            <a href=""><i class='icone-exit bx bx-x-circle'></i></a>
+                            <a href="{% url 'abastecimentos' %}"><i class='icone-exit bx bx-x-circle'></i></a>
                             <br>
                             <div class="flashcard-box-item">
-                                <p class="flashcard-item">Kms Rodados (Final - Inicial)</p>
+                                {% if km_rodados %}
+                                    <!-- Se houver dados, itere sobre eles -->
+                                {% for km_rodados in km_rodados %}
+                                    {{ km_rodados }} <!-- Exibe cada dado no HTML -->
+                                {% endfor %}
+                                	{% else %}
+                                    <p>Nenhum resultado encontrado.</p>
+                                {% endif %}
                             </div>
+                            <br>
                             <div class="flashcard-box-item">
-                                <p class="flashcard-item">Média Km rodados por litro</p>
+                                {% if media %}
+                                    <!-- Se houver dados, itere sobre eles -->
+                                {% for media in media %}
+                                    {{ media }} <!-- Exibe cada dado no HTML -->
+                                {% endfor %}
+                                	{% else %}
+                                    <p>Nenhum resultado encontrado.</p>
+                                {% endif %}
                             </div>
+                            <br>
                             <div class="flashcard-box-item">
-                                <p class="flashcard-item">Custo por Litro</p>
+                                {% if custo_litro %}
+                                    <!-- Se houver dados, itere sobre eles -->
+                                {% for custo_litro in custo_litro %}
+                                    {{ custo_litro }} <!-- Exibe cada dado no HTML -->
+                                {% endfor %}
+                                	{% else %}
+                                    <p>Nenhum resultado encontrado.</p>
+                                {% endif %}
                             </div>
+                            <br>
                             <div class="flashcard-box-item">
-                                <p class="flashcard-item">Km por Litro</p>
+                                {% if custo_km %}
+                                    <!-- Se houver dados, itere sobre eles -->
+                                {% for custo_km in custo_km %}
+                                    {{ custo_km }} <!-- Exibe cada dado no HTML -->
+                                {% endfor %}
+                                	{% else %}
+                                    <p>Nenhum resultado encontrado.</p>
+                                {% endif %}
                             </div>
+                            <br>
                             <div class="flashcard-box-item">
-                                <p class="flashcard-item">Custo por Km</p>
+                                {% if custo_abastecimento %}
+                                    <!-- Se houver dados, itere sobre eles -->
+                                {% for custo_abastecimento in custo_abastecimento %}
+                                    {{ custo_abastecimento }} <!-- Exibe cada dado no HTML -->
+                                {% endfor %}
+                                	{% else %}
+                                    <p>Nenhum resultado encontrado.</p>
+                                {% endif %}
                             </div>
+                            <br>
 
                         </div>
                         <div class="resultado-abastecimento-bom">

@@ -31,7 +31,7 @@
                     <div class="row">
                         <div class="col-md">
                             <label>Veículo</label>
-                            <input type="text" class="form-control" placeholder="Veículo" name="veiculo">
+                            <input type="text" class="form-control" placeholder="Descrição do veículo. Ex: Corolla - Diretoria / Astra - Particular" name="veiculo">
                         </div>
                         <div class="col-md">
                             <label>Placa</label>
@@ -65,14 +65,13 @@
                         </div>
                        <div class="col-md">
                             <label>Modelo</label>
-                            <input type="text" class="form-control" placeholder="Modelo" name="modelo">
+                            <input type="text" class="form-control" placeholder="Modelo. Ex: Corolla XEi 2.0 Flex" name="modelo">
                         </div> 
                     </div>
                     <br>
                     <br>
                     <div style="text-align: center;">
                         <input type="submit" value="Enviar" class="btn-cadastro">
-                        <input type="button" value="Voltar" onclick="window.location.href='{% url 'abastecimentos' %}'" class="btn-cadastro">
                     </div>
                     <br>
 {% endblock 'conteudo' %}

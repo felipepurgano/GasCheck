@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Combustivel(models.Model):
     nome = models.CharField(max_length=30)
@@ -8,20 +9,18 @@ class Combustivel(models.Model):
 
 
 class Abastecimento(models.Model):
-    COMBUSTIVEL_CHOICES = (('G', 'Gasolina'), ('E', 'Etanol'), ('D', 'Diesel'))
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
+    veiculo = models.CharField(max_length=50, default='')
     data_abastecimento = models.DateField()
-    combustivel = models.CharField(max_length=1, choices=COMBUSTIVEL_CHOICES)
-    km_inicial = models.CharField(max_length=10)
-    km_final = models.CharField(max_length=10)
-    km_rodado = models.CharField(max_length=10)
-    litros_abastecidos = models.CharField(max_length=5)
-    custo_total = models.CharField(max_length=7)
-    custo_litro = models.CharField(max_length=5)
-    km_litro = models.CharField(max_length=5)
-    custo_km = models.CharField(max_length=5)
+    combustivel = models.CharField(max_length=10)
+    posto = models.CharField(max_length=30, default='')
+    km_inicial = models.IntegerField()
+    km_final = models.IntegerField()
+    litros_abastecidos = models.FloatField()
+    custo_total = models.FloatField()
 
     def __str__(self):
-        return self.combustivel
+        return self.veiculo
 
 class TipoCombustivel(models.Model):
     tipo = models.CharField(max_length=10)
@@ -30,9 +29,10 @@ class TipoCombustivel(models.Model):
         return self.tipo
 
 class CadCarros(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
     veiculo = models.CharField(max_length=50)
     placa = models.CharField(max_length=7)
-    ano = models.IntegerField(max_length=4)
+    ano = models.IntegerField()
     cor = models.CharField(max_length=20)
     tipocombustivel = models.CharField(max_length=10, default='Gasolina')
     marca = models.CharField(max_length=20)
@@ -40,3 +40,4 @@ class CadCarros(models.Model):
 
     def __str__(self):
         return self.veiculo
+    
