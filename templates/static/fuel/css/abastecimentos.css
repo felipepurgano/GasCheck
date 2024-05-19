@@ -1,0 +1,57 @@
+.box-novo-abastecimento{
+    width: 70%;
+    margin: auto;
+}
+
+.flashcard{
+    background-color: rgba(255, 255, 255, .08);
+    padding: 20px;
+}
+
+.flashcard-box-item{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.flashcard p{
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.resultado-abastecimento-bom{
+
+    border-left: 20px solid #1DAB1A;
+
+}
+
+.resultado-abastecimento-dicas{
+
+    border-left: 20px solid #E8910E;
+
+}
+
+.resultado-abastecimento-ruim{
+
+    border-left: 20px solid #FE0000;
+
+}
+
+.flashcard-veiculo{
+    background-color: var(--dark-color);
+    display: inline;
+    padding: 10px;
+}
+
+.resposta-flashcard{
+    background-color: rgba(255, 255, 255, .08);
+    border-top: 1px solid rgba(255, 255, 255, .06);
+    padding: 20px;
+    display: none;
+}
+
+.icone-exit{
+    float: right;
+    font-size: 25px;
+    color: orangered;
+}

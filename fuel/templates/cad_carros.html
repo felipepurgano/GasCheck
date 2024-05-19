@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'cabecalho' %}
+    <link href="{% static 'usuarios/css/cadastro.css' %}" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+{% endblock 'cabecalho' %}
+
+{% block 'conteudo' %}
+
+<div class="container">
+    <br>
+    <br>
+    <div class="row">
+
+        <div class="col-md">
+
+            <div class="box-form">
+                <form action="" method="POST"> {% csrf_token %}
+                    <h3>Cadastro de Veículo</h3>
+                    {% if messages %}
+                        <br>
+                        {% for message in messages %}
+                            <section class="alert {{message.tags}}">
+                                {{message}}
+                            </section>
+                        {% endfor %}
+                    {% endif %}
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <label>Veículo</label>
+                            <input type="text" class="form-control" placeholder="Descrição do veículo. Ex: Corolla - Diretoria / Astra - Particular" name="veiculo">
+                        </div>
+                        <div class="col-md">
+                            <label>Placa</label>
+                            <input type="text" class="form-control" placeholder="Placa" name="placa">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <label>Ano</label>
+                            <input type="text" class="form-control" placeholder="Ano" name="ano">
+                        </div>
+                        <div class="col-md">
+                            <label>Cor</label>
+                            <input type="text" class="form-control" placeholder="Cor" name="cor">
+                        </div>
+                        <div class="col-md">
+                            <label for="">Combustível de Abastecimento</label>
+                                <select class="form-select" name="tipocombustivel">
+                                    {% for tipocombustivel in tipocombustivel %}
+                                    <option value="{{tipocombustivel.id}}">{{tipocombustivel}}</option>
+                                    {% endfor %}
+                                </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <label>Marca</label>
+                            <input type="text" class="form-control" placeholder="Marca" name="marca">
+                        </div>
+                        <div class="col-md">
+                            <label>Modelo</label>
+                            <select class="form-select" name="modelos">
+                                {% for modelocarro in modelocarro %}
+                                <option value="{{modelocarro.id}}">{{modelocarro.modelos}}</option>
+                                {% endfor %}
+                            </select>
+                        </div> 
+                    </div>
+                    <br>
+                    <br>
+                    <div style="text-align: center;">
+                        <input type="submit" value="Enviar" class="btn-cadastro">
+                    </div>
+                    <br>
+{% endblock 'conteudo' %}
+
+{% block 'footer' %}
+    <p style="text-align: center;">&copy; 2024 PJI310 - Grupo 002. Todos os direitos reservados.</p>   
+{% endblock %}

@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'cabecalho' %}
+    <link href="{% static 'usuarios/css/cadastro.css' %}" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="{% static 'fuel/css/abastecimentos.css' %}" rel="stylesheet">
+{% endblock 'cabecalho' %}
+
+{% block 'conteudo' %}
+
+    <div class="container">
+        <br>
+        <br>
+        <div class="row">
+
+            <div class="col-md">
+
+                <div class="box-form">
+                    <form action="" method="POST"> {% csrf_token %}
+                        <h3>Abastecimentos</h3>
+                        {% if messages %}
+                            <br>
+                            {% for message in messages %}
+                                <section class="alert {{message.tags}}">
+                                    {{message}}
+                                </section>
+                            {% endfor %}
+                        {% endif %}
+                        <br>
+                        <div class="row">
+                            <div class="col-md">
+                                <label>Veículo</label>
+                                <select name="veiculo" id="" class="form-select">
+                                    {% for veiculo in veiculo %}
+                                    <option value="{{veiculo.id}}">{{veiculo}}</option>
+                                    {% endfor %}
+                            </select>
+                            </div>
+                            <br>
+                            <div class="col-md">
+                                <label>Data do abastecimento</label>
+                                <input type="date" class="form-control" name="data_abastecimento">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+
+                            <div class="col-md">
+                                <label for="">Combustível</label>
+                                <select class="form-select" name="combustivel">
+                                    {% for combustivel in combustivel %}
+                                        <option value="{{combustivel.id}}">{{combustivel}}</option>
+                                    {% endfor %}
+                                </select>
+                                <br>
+                                <label for="">Posto de Abastecimento</label>
+                                <input type="text" class="form-control" placeholder="Posto" name="posto" >
+                                <br>
+                                <label for="">Litros Abastecido</label>
+                                <input type="text" class="form-control" placeholder="Litros Abastecidos" name="litros_abastecidos">
+                            </div>
+                                <br>
+                            <div class="col-md">
+                                <label for="">Km Inicial</label>
+                                <input type="text" class="form-control" placeholder="KM Inicial" name="km_inicial">
+                                <br>
+                                <label for="">Km Final</label>
+                                <input type="text" class="form-control" placeholder="KM Final" name="km_final">
+                                <br>
+                                <div class="col-md">
+                                    <label for="">Custo Total</label>
+                                    <input type="text" class="form-control" placeholder="Custo Total" name="custo_total">
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <input type="submit" value="Enviar" class="btn-cadastro">
+                        <br>
+                        <br>
+                        <br>
+                    </form>
+                </div>
+
+            </div>
+            <div class="col-md">
+                <form action="{% url 'abastecimentos' %}" method="GET">
+                    <div class="row">
+                        <div class="col-md">
+                            <label for="">Veículo</label>
+                            <select name="veiculo" id="" class="form-select">
+                                    {% for veiculo in veiculo %}
+                                        <option value="{{veiculo.id}}">{{veiculo}}</option>
+                                    {% endfor %}
+                            </select>
+                        </div>
+      
+                        <div class="col-md">
+                            <label for="">Data de Abastecimento</label>
+                            <select class="form-select" name="data_abastecimento">
+                                {% for data_abastecimento in data_abastecimento %}
+                                <option value="{{ data_abastecimento.data_abastecimento|date:'Y-m-d' }}">
+                                    {{ data_abastecimento.data_abastecimento }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                                                
+                        <div class="col-md">
+                            <br>
+                            <input type="submit" style="width: 100%" value="Filtrar" class="btn-cadastro">
+                        </div>
+                    </div>
+
+                </form>
+
+                <br>
+                <br>
+
+                    <div class="box-novo-abastecimento">
+                        <div class="abastecimento">
+                            <div style="text-align: center;">    
+                                <div class="flashcard-veiculo">
+                                    {% for veiculo in veiculo %}
+                                        <option value="{{veiculo.id}}">Veículo : {{veiculo}}</option>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <a href="{% url 'abastecimentos' %}"><i class='icone-exit bx bx-x-circle'></i></a>
+                            <br>
+                            <div class="flashcard-box-item">
+                                {% if km_rodados %}
+                                    <!-- Se houver dados, itere sobre eles -->
+                                {% for km_rodados in km_rodados %}
+                                    {{ km_rodados }} <!-- Exibe cada dado no HTML -->
+                                {% endfor %}
+                                	{% else %}
+                                    <p>Nenhum resultado encontrado.</p>
+                                {% endif %}
+                            </div>
+                            <br>
+                            <div class="flashcard-box-item">
+                                {% if media %}
+                                    <!-- Se houver dados, itere sobre eles -->
+                                {% for media in media %}
+                                    {{ media }} <!-- Exibe cada dado no HTML -->
+                                {% endfor %}
+                                	{% else %}
+                                    <p>Nenhum resultado encontrado.</p>
+                                {% endif %}
+                            </div>
+                            <br>
+                            <div class="flashcard-box-item">
+                                {% if custo_litro %}
+                                    <!-- Se houver dados, itere sobre eles -->
+                                {% for custo_litro in custo_litro %}
+                                    {{ custo_litro }} <!-- Exibe cada dado no HTML -->
+                                {% endfor %}
+                                	{% else %}
+                                    <p>Nenhum resultado encontrado.</p>
+                                {% endif %}
+                            </div>
+                            <br>
+                            <div class="flashcard-box-item">
+                                {% if custo_km %}
+                                    <!-- Se houver dados, itere sobre eles -->
+                                {% for custo_km in custo_km %}
+                                    {{ custo_km }} <!-- Exibe cada dado no HTML -->
+                                {% endfor %}
+                                	{% else %}
+                                    <p>Nenhum resultado encontrado.</p>
+                                {% endif %}
+                            </div>
+                            <br>
+                            <div class="flashcard-box-item">
+                                {% if custo_abastecimento %}
+                                    <!-- Se houver dados, itere sobre eles -->
+                                {% for custo_abastecimento in custo_abastecimento %}
+                                    {{ custo_abastecimento }} <!-- Exibe cada dado no HTML -->
+                                {% endfor %}
+                                	{% else %}
+                                    <p>Nenhum resultado encontrado.</p>
+                                {% endif %}
+                            </div>
+                            <br>
+                        </div>
+                        {% if messages %}
+                            <br>
+                            {% for message in messages %}
+                                <section class="alert {{message.tags}}">
+                                    {{message}}
+                                </section>
+                            {% endfor %}
+                        {% endif %}
+                        {% comment %}
+                         <div class="resultado-abastecimento-bom">
+                            ✅ Parabéns seu carro está realizado a média definida pela montadora.
+                        </div>
+                        <br>
+                        <div class="resultado-abastecimento-ruim">
+                            ❌ Ops! Temos um probleminha com média de combustível do seu veículo.
+                        </div>
+                        <br>
+                        <div class="resultado-abastecimento-dicas">
+                            ⚠️ Dê uma olhada em algumas recomendações que temos para você!
+                        </div> 
+                        {% endcomment %}
+                    </div>
+                    <br>
+                    <br>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock 'conteudo' %}
+
+{% block 'footer' %}
+    <p style="text-align: center;">&copy; 2024 PJI310 - Grupo 002. Todos os direitos reservados.</p>   
+{% endblock %}
